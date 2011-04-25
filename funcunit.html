@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../funcunit/qunit/qunit.css" />
+		<title>form_binder FuncUnit Test</title>
+		<script type='text/javascript' src='../steal/steal.js?form_binder/form_binder_test.js'></script>
+	</head>
+	<body>
+		<h1 id="qunit-header">form_binder Test Suite</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-test-area"></div>
+		<script type='text/ejs' id='form'>
+			<% var f = form_binder(m) %>
+			<form <%= f.bindForm() %>>
+			  <%== f.inputs('title', 'body', 'lead', 'is_published') %>
+			  <%== f.input('status', {as: 'select'}) %>
+			  <%== f.input('tags') %>
+			  <input type="submit" />
+			</form>
+		</script>
+	</body>
+</html>
