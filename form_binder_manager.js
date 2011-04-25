@@ -85,11 +85,14 @@ steal.plugins(
 			var options = []; 
 			if(typeof values != 'undefined'){
 				for(var i = 0; i < values.length; i++){
-					var option = '<label><input type="radio" name="' + opts.name + '" value="' + values[i][0] +'"'
-					if(values[i][0] == opts.value){
+					var v = values[i];
+					if(typeof v == 'string') v = [v, v];
+					console.log(v)
+					var option = '<label><input type="radio" name="' + opts.name + '" value="' + v[0] +'"'
+					if(v[0] == opts.value){
 						option += " checked";
 					}
-					option += " />" + values[i][1] + '</label>';
+					option += " />" + v[1] + '</label>';
 					options.push(option);
 				}
 			}

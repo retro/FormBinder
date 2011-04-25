@@ -54,22 +54,36 @@ steal.plugins(
 				this.element.find('[name="' + el.attr('name') + '"]:checked').each(function(i, el){
 					val.push($(el).val());
 				})
+			} else if(this.options.model.Class.attributes[attr] == 'boolean'){
+				val = $('el').is(':checked');
+			} else if($(el).attr('type') == 'radio') {
+				val = $('[name="' + el.attr('name') + '"]:checked').val()
 			} else {
 				val = el.val();
 			}
 			this.options.model.attr(attr, val, null, this.callback('addErrorsForAttr'));
 		},
 		modelAttrChanged : function(attr){
+			var name = '[name="'+this.options.model.Class._shortName+'['+attr+']"]';
 			if(this.options.model.Class.attributes[attr] == 'array'){
 				var self = this;
-				var name = '[name="'+this.options.model.Class._shortName+'['+attr+'][]"]';
+				name = '[name="'+this.options.model.Class._shortName+'['+attr+'][]"]';
 				this.element.find(name).each(function(i, el){
 					if(self.options.model.attr(attr).indexOf($(el).val()) > -1) $(el).attr('checked', true)
 					else $(el).attr('checked', false);
 				}).parents('.input-wrapper').removeClass('has-errors').find('.errors').html('').hide();
+			} else if(this.options.model.Class.attributes[attr] == 'boolean') {
+				this.errorsElementForField(attr).html('').hide().parents('.input-wrapper').removeClass('has-errors');
+				this.element.find(name).attr('checked', this.options.model.attr(attr));
+			} else if(this.element.find(name).attr('type') == 'radio'){
+				var self = this;
+				var el = this.element.find(name).map(function(i, element){
+					if($(element).val() == self.options.model.attr(attr))
+					return element;
+				})
+				$(el).attr('checked', true);
 			} else {
 				this.errorsElementForField(attr).html('').hide().parents('.input-wrapper').removeClass('has-errors');
-				var name = '[name="'+this.options.model.Class._shortName+'['+attr+']"]';
 				this.element.find(name).val(this.options.model.attr(attr));
 			}
 			
