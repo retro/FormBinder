@@ -1,6 +1,6 @@
 # FormBinder 
 
-FormBinder is a form builder for JavaScriptMVC with automatic binding to a model. It is extremely inspired by the [SimpleForm](https://github.com/plataformatec/simple_form) library for Rails.
+FormBinder is a form builder for JavaScriptMVC with automatic binding to a model. It is inspired by the [SimpleForm](https://github.com/plataformatec/simple_form) library for Rails.
 
 It provides a builder for your forms and it binds that form to a model instance. That way you can implement live validation for your form in a model.
 
@@ -70,4 +70,6 @@ You can also provide values inline in template:
     
     <%= f.input('status', {as: 'select', values: [['published', 'Published'], ['draft', 'Draft']]}) %>
 
-It currently works with edge version of JavaScriptMVC 3.0 (future 3.0.6 version)
+It currently works with edge version of JavaScriptMVC 3.0 (future 3.0.6 version),
+
+FormBinder is published under MIT License.
