@@ -80,10 +80,10 @@ steal.plugins(
 		_booleanInput : function(opts){
 			return $.View('views/inputs/boolean', opts);
 		},
-		_radioInput : function(opts){
+		_radioGroupInput : function(opts){
 			opts.values  = opts.values || opts.model.Class['valuesFor' + $.String.capitalize(opts.field)];
 			if($.isFunction(opts.values)) opts.values = opts.values(opts.model);
-			return $.View('views/inputs/radio', opts);
+			return $.View('views/inputs/radio_group', opts);
 		},
 		_checkboxGroupInput : function(opts){
 			opts.values  = opts.values || opts.model.Class['valuesFor' + $.String.capitalize(opts.field)];

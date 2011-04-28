@@ -18,9 +18,12 @@
 			  <%= f.input('password', {as: 'password'}) %>
 			  <%= f.input('status', {as: 'select'}) %>
 			  <%= f.input('tags') %>
-			  <%= f.input('author', {as: 'radio'}) %>
+			  <%= f.input('author', {as: 'radioGroup'}) %>
 			  <%= f.input('non_existing_attribute') %>
 			  <%= f.input('non_existing_attribute2') %>
+			  <%= f.input('select_field', {as: 'select', values: [['published', 'Published'], ['draft', 'Draft']]}) %>
+        <%= f.input('radio_group_field', {as: 'radioGroup', values: [['published', 'Published'], ['draft', 'Draft']]}) %>
+        <%= f.input('checkbox_group_field', {as: 'checkboxGroup', values: [['published', 'Published'], ['draft', 'Draft']]}) %>
 			  <input type="submit" />
 			</form>
 		</script>

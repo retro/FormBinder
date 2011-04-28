@@ -126,5 +126,11 @@ steal.plugins(
 		equals($('#blog_post_non_existing_attribute2').val(), 'Test value')
 	})
 	
+	test("providing inline values to selects, checkbox groups and radio groups", function(){
+		equals($('#blog_post_select_field option').length, 2)
+		equals($('[name="blog_post[radio_group_field]"]').length, 2)
+		equals($('[name="blog_post[checkbox_group_field][]"]').length, 2)
+	})
+	
 }) 
 
