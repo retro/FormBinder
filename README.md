@@ -25,6 +25,10 @@ You can build your form like this:
 
 It will create fields for title and lead. Title will be rendered as a text input and lead as a textarea.
 
+You can pass FormBuilder object from controller by instantiating it like this
+
+    var f = FormBinderBuilder.getBuilder(model_instance);
+
 If you need more customization you can render each field on it's own:
 
     <% var f = form_builder(model_instance) // You can pass this variable from controller %>
