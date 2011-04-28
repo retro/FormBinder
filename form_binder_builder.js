@@ -54,11 +54,13 @@ steal.plugins(
 			
 			var hint = opts.hint || null;
 			
+			console.log(opts.label)
+			
 			return $.View('views/wrappers/' + this._templateMethod(fieldType).apply(this), {
 				input: this._renderMethod(fieldType).call(this, opts),
 				fieldType : fieldType,
 				fieldId : id,
-				label : $.String.niceName(field),
+				label : opts.label,
 				hint : hint
 			});
 		},
@@ -105,7 +107,7 @@ steal.plugins(
 		_checkboxGroupTemplate : function(){
 			return 'boolean_checkbox_radio'; 
 		},
-		_radioTemplate : function(){
+		_radioGroupTemplate : function(){
 			return 'boolean_checkbox_radio'; 
 		},
 		_stringTemplate : function(){

@@ -15,7 +15,7 @@
 			<% var f = form_builder(m) %>
 			<form <%= f.bindForm() %>>
 			  <%= f.inputs('title', 'body', 'lead', 'is_published') %>
-			  <%= f.input('password', {as: 'password'}) %>
+			  <%= f.input('password', {as: 'password', label: 'Insert password', hint: 'Your password'}) %>
 			  <%= f.input('status', {as: 'select'}) %>
 			  <%= f.input('tags') %>
 			  <%= f.input('author', {as: 'radioGroup'}) %>
