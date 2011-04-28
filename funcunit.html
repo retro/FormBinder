@@ -12,12 +12,15 @@
 		<ol id="qunit-tests"></ol>
 		<div id="qunit-test-area"></div>
 		<script type='text/ejs' id='form'>
-			<% var f = form_binder(m) %>
+			<% var f = form_builder(m) %>
 			<form <%= f.bindForm() %>>
-			  <%== f.inputs('title', 'body', 'lead', 'is_published') %>
-			  <%== f.input('status', {as: 'select'}) %>
-			  <%== f.input('tags') %>
-			  <%== f.input('author', {as: 'radio'}) %>
+			  <%= f.inputs('title', 'body', 'lead', 'is_published') %>
+			  <%= f.input('password', {as: 'password'}) %>
+			  <%= f.input('status', {as: 'select'}) %>
+			  <%= f.input('tags') %>
+			  <%= f.input('author', {as: 'radio'}) %>
+			  <%= f.input('non_existing_attribute') %>
+			  <%= f.input('non_existing_attribute2') %>
 			  <input type="submit" />
 			</form>
 		</script>

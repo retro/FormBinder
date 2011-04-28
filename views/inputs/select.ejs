@@ -1,0 +1,6 @@
+<select name="<%= name %>" id="<%= id %>">
+  <%for(var i = 0; i < values.length; i++){%>
+    <% var v = values[i]; if(typeof v == 'string'){ v = [v, v]; }%>
+    <option value="<%= v[0] %>"<%if(v[0] == value){%> selected<%}%>><%= v[1] %></option>
+  <%}%>
+</select>

@@ -1,0 +1,7 @@
+<%for(var i = 0; i < values.length; i++){%>
+	<% var v = values[i]; if(typeof v == 'string'){ v = [v, v]; }%>
+	<label>
+	  <input type="radio" name="<%= name %>" value="<%= v[0] %>"<%if(v[0] == value){%> checked<%}%> />
+    <%= v[1] %>
+  </label>
+<%}%>

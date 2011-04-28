@@ -47,12 +47,21 @@ steal.plugins(
 		stop();
 		$('#blog_post_title').val('Title').trigger('blur');
 		equals('Title', model.attr('title'));
+		$('#blog_post_lead').val('Lead').trigger('blur');
+		equals('Lead', model.attr('lead'));
 		start();
 	});	
 	
 	test("Changing an attribute in model reflects in form", function(){
 		model.attr('title', 'Title2');
 		equals($('#blog_post_title').val(), 'Title2');
+		model.attr('body', 'Body');
+		equals($('#blog_post_body').val(), 'Body');
+	})
+	
+	test("Changing an attribute in model reflects in password field", function(){
+		model.attr('password', 'pass');
+		equals($('#blog_post_password').val(), 'pass');
 	})
 	
 	test("Setting an array attribute should check checkboxes in checkbox group", function(){
@@ -105,6 +114,16 @@ steal.plugins(
 	test("Clicking an radio button should set value in model", function(){
 		$('[name="blog_post[author]"]:eq(3)').trigger('click').trigger('change');
 		equals(model.attr('author'), 'Austin')
+	})
+	
+	test("Setting a value of form field that isn't set in attributes should work as expected", function(){
+		$('#blog_post_non_existing_attribute').val('Test value').trigger('change');
+		equals(model.attr('non_existing_attribute'), 'Test value')
+	})
+	
+	test("Setting an non_existing_attribute should set value in form field", function(){
+		model.attr('non_existing_attribute2', 'Test value');
+		equals($('#blog_post_non_existing_attribute2').val(), 'Test value')
 	})
 	
 }) 

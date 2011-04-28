@@ -3,17 +3,13 @@ steal.plugins(
 	'jquery/controller',
 	'jquery/view/ejs',
 	'jquery/model',
-	'jquery/model/validations').then('form_binder_manager', function($){
+	'jquery/model/validations').then('form_binder_builder', function($){
 	$.Controller.extend("FormBinder",{
 		
-	}, {
-		init : function(){
-			m = this.options.model
-			for(var k in this.options.model.Class.attributes){
-				if(this.options.model.Class.attributes.hasOwnProperty(k)){
-					this.options.model.bind(k, this.callback('modelAttrChanged', k));
-				}
-			}
+	}, 
+	{
+		'{model} updated.attr' : function(model, ev, attr, newValue, oldValue){
+			this.modelAttrChanged(attr)
 		},
 		submit : function(el, ev){
 			var errors = this.options.model.errors();

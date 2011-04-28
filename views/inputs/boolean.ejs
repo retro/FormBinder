@@ -1,0 +1,5 @@
+<label>
+  <input type="checkbox" id="<%= id %>" name="<%= name %>" value="true"<%if(model.attr(field) === true){%> checked<%}%> />
+  <input type="hidden" name="<%= name %>" value="false" />
+  <%= label %>
+</label>
