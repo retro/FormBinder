@@ -1,4 +1,4 @@
-steal.plugins(
+steal(
 	"jquery/class", 
 	'jquery/controller', 
 	'jquery/model', 
@@ -9,8 +9,7 @@ steal.plugins(
 .then(function(){
 	
 	$.Controller.extend('Cntrlr', {
-			init : function(){
-			
+		init : function(){
 			this.element.html($.View('form', {m: model}))
 		}
 	});
