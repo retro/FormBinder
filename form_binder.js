@@ -116,7 +116,6 @@ steal(
 		setup : function(model, opts){
 			var options = opts || {};
 			this.options = $.extend($.extend(true, {}, this.Class.defaults), options);
-			console.log(this.options)
 		},
 		init : function(model){
 			this.model = model;
@@ -168,8 +167,6 @@ steal(
 				opts.label = $.String.niceName(field);
 			
 			var hint = opts.hint || null;
-			
-			//console.log(opts.label)
 			
 			return $.View(this._templateMethod(fieldType).apply(this), {
 				input: this._renderMethod(fieldType).call(this, opts),
