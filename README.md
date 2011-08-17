@@ -15,6 +15,7 @@ When you want to use the plugin you have to steal it from your controller:
     steal('form_binder', ....).then();
     
 If you don't put FormBinder in your steal.root directory (one where the jquery, funcunit, steal, etc., folders are) you have to steal it by using path to the folder. For instance if you put it inside of ROOT\_JS\_DIRECTORY/my\_app/form\_binder you would steal it like this: 
+
     steal('my_app/form_binder', ....).then();
 
 ## Usage
@@ -111,6 +112,8 @@ or
     var f = FormBinder.Builder.getBuilder(model_instance, {string_input: "My/location/of/string/input"});
 
 
-It works the current - 3.1 and future - 3.2 version of JMVC.
+## Supported Versions and License
+
+FormBinder works with the 3.1 and edge versions of JavaScriptMVC.
 
 FormBinder is published under MIT License.
