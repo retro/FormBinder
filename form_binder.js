@@ -13,11 +13,15 @@ steal(
 		'{model} updated.attr' : function(model, ev, attr, newValue, oldValue){
 			this.modelAttrChanged(attr)
 		},
+		'{model} invalidated' : function(model, ev, errors){
+			this.addErrorsForAttr(errors);
+		},
 		submit : function(el, ev){
 			var errors = this.options.model.errors();
 			if(errors){
 				this.addErrorsForAttr(errors);
 				ev.preventDefault();
+				ev.stopPropagation();
 			}
 		},
 		'input blur' : function(el, ev){
@@ -98,7 +102,6 @@ steal(
 		},
 		defaults : {
 			// Wrappers
-			
 			generic_wrapper                : 'views/wrappers/generic.ejs',
 			boolean_checkbox_radio_wrapper : 'views/wrappers/boolean_checkbox_radio.ejs',
 			
@@ -168,7 +171,7 @@ steal(
 			
 			var hint = opts.hint || null;
 			
-			return $.View(this._templateMethod(fieldType).apply(this), {
+			return $.View(FormBinder.Builder.folder + this._templateMethod(fieldType).apply(this), {
 				input: this._renderMethod(fieldType).call(this, opts),
 				fieldType : fieldType,
 				fieldId : id,
@@ -183,35 +186,35 @@ steal(
 			return (typeof this['_'+f+'Template'] != 'undefined') ? this['_'+f+'Template'] : this._stringTemplate;
 		},
 		_passwordInput : function(opts){
-			return $.View(this.options.password_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.password_input, opts);
 		},
 		_stringInput : function(opts){
-			return $.View(this.options.string_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.string_input, opts);
 		},
 		_textInput : function(opts){
-			return $.View(this.options.textarea_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.textarea_input, opts);
 		},
 		_booleanInput : function(opts){
-			return $.View(this.options.boolean_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.boolean_input, opts);
 		},
 		_radioGroupInput : function(opts){
 			opts.values  = opts.values || opts.model.Class['valuesFor' + $.String.capitalize(opts.field)];
 			if($.isFunction(opts.values)) opts.values = opts.values(opts.model);
-			return $.View(this.options.radio_group_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.radio_group_input, opts);
 		},
 		_checkboxGroupInput : function(opts){
 			opts.values  = opts.values || opts.model.Class['valuesFor' + $.String.capitalize(opts.field)];
 			if($.isFunction(opts.values)) opts.values = opts.values(opts.model);
 			opts.value = opts.value || [];
 			if($.isFunction(opts.values)) opts.values = opts.values(opts.model);
-			return $.View(this.options.checkbox_group_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.checkbox_group_input, opts);
 		},
 		_selectInput : function(opts){
 			var select  = '<select name="' + opts.name + '" id="' + opts.id + '">';
 			var values  = opts.values || opts.model.Class['valuesFor' + $.String.classize(opts.field)];
 			if($.isFunction(values)) values = values(opts.model);
 			opts.values = values;
-			return $.View(this.options.select_input, opts);
+			return $.View(FormBinder.Builder.folder + this.options.select_input, opts);
 		},
 		_booleanTemplate : function(){
 			return this.options.boolean_checkbox_radio_wrapper; 
@@ -226,6 +229,8 @@ steal(
 			return this.options.generic_wrapper;
 		}
 	});
+	
+	FormBinder.Builder.folder = "//" + steal.cur().dir() + "/";
 	
 	$.extend($.EJS.Helpers.prototype, {form_builder : FormBinder.Builder.getBuilder});
 	

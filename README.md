@@ -34,7 +34,7 @@ If you have a model that looks like this:
 You can build your form like this:
 
     <% var f = form_builder(model_instance) // You can pass this variable from controller %>
-    <form <%= f.bindForm() %>>
+    <form <%= f.bindForm %>>
       <%= f.inputs(); %>
       <input type="submit" value="Submit form" />
     </form>
@@ -48,7 +48,7 @@ You can pass FormBuilder object from controller by instantiating it like this
 If you need more customization you can render each field on it's own:
 
     <% var f = form_builder(model_instance) // You can pass this variable from controller %>
-    <form <%= f.bindForm() %>>
+    <form <%= f.bindForm %>>
       <%= f.input('title'); %>
       <%= f.input('lead'); %>
       <input type="submit" value="Submit form" />
@@ -58,7 +58,7 @@ If you need more customization you can render each field on it's own:
 
 You can customize rendering of your fields by passing options to the input method:
 
-    <form <%= f.bindForm() %>>
+    <form <%= f.bindForm %>>
       <%= f.input('title', {as: 'textarea', label: 'Insert title', hint: 'Blog title'}); %>
       <input type="submit" value="Submit form" />
     </form>
@@ -114,6 +114,6 @@ or
 
 ## Supported Versions and License
 
-FormBinder works with the 3.1 and edge versions of JavaScriptMVC.
+FormBinder works with the 3.2.1 and edge versions of JavaScriptMVC.
 
 FormBinder is published under MIT License.

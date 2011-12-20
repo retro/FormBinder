@@ -1,1 +1,1 @@
-<input type="text" id="<%= id %>" name="<%= name %>" value="<%= value %>" />
+<input type="text" id="<%= id %>" name="<%= name %>" value="<%= (!value || value == "null") ? "" : value %>" />

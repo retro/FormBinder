@@ -8,12 +8,12 @@ steal(
 	'form_binder')
 .then(function(){
 	
-	$.Controller.extend('Cntrlr', {
+	$.Controller('Cntrlr', {
 		init : function(){
 			this.element.html($.View('form', {m: model}))
 		}
 	});
-	$.Model.extend("BlogPost",{
+	$.Model("BlogPost",{
 		attributes : { 
 			title        : 'string',
 			lead         : 'text',
